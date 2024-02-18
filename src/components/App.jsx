@@ -11,8 +11,7 @@ export default class App extends Component {
       { id: nanoid(), name: 'Eden Clements', number: '645-17-79' },
       { id: nanoid(), name: 'Annie Copeland', number: '227-91-26' },
     ],
-    name: '',
-    number: '',
+
     filter: '',
   };
 
@@ -22,11 +21,26 @@ export default class App extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { name, number } = this.state;
+    const { name, number, contacts } = this.state;
+    if (
+      contacts.some(
+        contact => contact.name === name || contact.number === number
+      )
+    ) {
+      alert(`${name} is already in contacts`);
+      this.setState({ name: '', number: '' });
+      return;
+    }
     this.setState(prevState => ({
       contacts: [...prevState.contacts, { id: nanoid(), name, number }],
       name: '',
       number: '',
+    }));
+  };
+
+  handleDeleteContact = id => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
   };
 
@@ -58,7 +72,8 @@ export default class App extends Component {
         <h2>Filter</h2>
         <ContactList
           contacts={contacts}
-          handleChange={this.handleChange}
+          onChange={this.handleChange}
+          onDeleteContact={this.handleDeleteContact}
           filter={filter}
         />
       </div>

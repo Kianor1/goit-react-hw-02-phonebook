@@ -1,24 +1,12 @@
 import React, { Component } from 'react';
 
 export default class ContactList extends Component {
-  state = {
-    contacts: this.props.contacts,
-    filter: this.props.filter,
-  };
-
   handleDeleteContact = id => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== id),
-    }));
-  };
-
-  handleChange = e => {
-    this.setState({ filter: e.target.value });
-    this.props.handleChange(e);
+    this.props.onDeleteContact(id);
   };
 
   render() {
-    const { filter, contacts } = this.state;
+    const { filter, contacts, onDeleteContact } = this.props;
     const filteredContacts = contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
@@ -29,7 +17,7 @@ export default class ContactList extends Component {
           type="text"
           name="filter"
           value={filter}
-          onChange={this.props.handleChange}
+          onChange={this.props.onChange}
         />
         <ul>
           {filteredContacts.map(contact => (
@@ -37,7 +25,7 @@ export default class ContactList extends Component {
               <p>
                 {contact.name}: {contact.number}
               </p>
-              <button onClick={() => this.handleDeleteContact(contact.id)}>
+              <button onClick={() => onDeleteContact(contact.id)}>
                 Delete
               </button>
             </li>
