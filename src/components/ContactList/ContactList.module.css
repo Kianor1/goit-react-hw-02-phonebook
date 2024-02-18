@@ -1,0 +1,19 @@
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+button {
+  height: 20px;
+}
+
+button:hover {
+  background-color: blue;
+  color: #fff;
+}

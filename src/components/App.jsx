@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import ContactList from './ContactList/ContactList.jsx';
+import ContactsForm from './ContactsForm/ContactsForm.jsx';
 
 export default class App extends Component {
   state = {
@@ -45,30 +46,12 @@ export default class App extends Component {
   };
 
   render() {
-    const { name, number, contacts, filter } = this.state;
+    const { contacts, filter } = this.state;
 
     return (
       <div>
         <h1>Phonebook</h1>
-        <form onSubmit={this.handleSubmit}>
-          <h2>Name</h2>
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={this.handleChange}
-            required
-          />
-          <h2>Number</h2>
-          <input
-            type="tel"
-            name="number"
-            value={number}
-            onChange={this.handleChange}
-            required
-          />
-          <button type="submit">Add contact</button>
-        </form>
+        <ContactsForm onSubmit={this.handleSubmit} />
         <h2>Filter</h2>
         <ContactList
           contacts={contacts}

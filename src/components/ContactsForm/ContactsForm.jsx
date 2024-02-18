@@ -1,20 +1,25 @@
-// import React, { Component } from 'react';
+import React from 'react';
 
-// export default class ContactsForm extends Component {
-//   state = {
-//     id: '',
-//     number: '',
-//     filter: '',
-//   };
-//   render() {
-//     return (
-//       <form>
-//         <div>
-//           <h2>Name</h2>
-//           <input type="text" name="name" value={name} required />
-//           <button type="submit"></button>
-//         </div>
-//       </form>
-//     );
-//   }
-// }
+export default function ContactsForm({ name, number, onChange, onSubmit }) {
+  return (
+    <form onSubmit={onSubmit}>
+      <h2>Name</h2>
+      <input
+        type="text"
+        name="name"
+        value={name}
+        onChange={onChange}
+        required
+      />
+      <h2>Number</h2>
+      <input
+        type="tel"
+        name="number"
+        value={number}
+        onChange={onChange}
+        required
+      />
+      <button type="submit">Add contact</button>
+    </form>
+  );
+}
