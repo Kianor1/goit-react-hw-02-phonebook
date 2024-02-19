@@ -1,4 +1,3 @@
-// App.jsx
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import ContactList from './ContactList/ContactList';
@@ -16,23 +15,21 @@ export default class App extends Component {
     filter: '',
   };
 
-  handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    const { name, number, contacts } = this.state;
-    if (contacts.some(contact => contact.name === name)) {
+  handleAddContact = contact => {
+    const { name, number } = contact;
+    if (
+      this.state.contacts.some(existingContact => existingContact.name === name)
+    ) {
       alert(`${name} is already in contacts`);
-      this.setState({ name: '', number: '' });
       return;
     }
     this.setState(prevState => ({
       contacts: [...prevState.contacts, { id: nanoid(), name, number }],
-      name: '',
-      number: '',
     }));
+  };
+
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   handleDeleteContact = id => {
@@ -47,12 +44,7 @@ export default class App extends Component {
     return (
       <div>
         <h1>Phonebook</h1>
-        <ContactsForm
-          onSubmit={this.handleSubmit}
-          onChange={this.handleChange}
-          name={this.state.name || ''}
-          number={this.state.number || ''}
-        />
+        <ContactsForm add={this.handleAddContact} />
         <ContactList
           contacts={contacts}
           onChange={this.handleChange}
