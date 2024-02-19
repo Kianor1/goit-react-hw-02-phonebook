@@ -47,7 +47,12 @@ export default class App extends Component {
     return (
       <div>
         <h1>Phonebook</h1>
-        <ContactsForm onSubmit={this.handleSubmit} />
+        <ContactsForm
+          onSubmit={this.handleSubmit}
+          onChange={this.handleChange}
+          name={this.state.name || ''}
+          number={this.state.number || ''}
+        />
         <h2>Filter</h2>
         <ContactList
           contacts={contacts}
