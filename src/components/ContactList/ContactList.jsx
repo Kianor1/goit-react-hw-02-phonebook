@@ -8,7 +8,7 @@ export default function ContactList({
   onDeleteContact,
 }) {
   const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
+    contact.name.toLowerCase()?.includes(filter.toLowerCase())
   );
 
   return (

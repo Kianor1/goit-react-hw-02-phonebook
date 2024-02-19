@@ -1,8 +1,8 @@
 // App.jsx
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
-import ContactList from './ContactList/ContactList.jsx';
-import ContactsForm from './ContactsForm/ContactsForm.jsx';
+import ContactList from './ContactList/ContactList';
+import ContactsForm from './ContactsForm/ContactsForm';
 
 export default class App extends Component {
   state = {
@@ -23,11 +23,7 @@ export default class App extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { name, number, contacts } = this.state;
-    if (
-      contacts.some(
-        contact => contact.name === name || contact.number === number
-      )
-    ) {
+    if (contacts.some(contact => contact.name === name)) {
       alert(`${name} is already in contacts`);
       this.setState({ name: '', number: '' });
       return;
