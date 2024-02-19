@@ -1,8 +1,9 @@
 import React from 'react';
+import s from './ContactsForm.module.css';
 
 export default function ContactsForm({ name, number, onChange, onSubmit }) {
   return (
-    <form onSubmit={onSubmit}>
+    <form className={s.box_form} onSubmit={onSubmit}>
       <h2>Name</h2>
       <input
         type="text"

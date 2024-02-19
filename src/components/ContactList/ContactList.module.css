@@ -1,15 +1,26 @@
+div {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .list {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+
 }
 
 .item {
   display: flex;
-  gap: 15px;
   align-items: center;
+
 }
 
 button {
+  margin-left: 15px;
   height: 20px;
 }
 

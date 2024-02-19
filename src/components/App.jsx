@@ -53,7 +53,6 @@ export default class App extends Component {
           name={this.state.name || ''}
           number={this.state.number || ''}
         />
-        <h2>Filter</h2>
         <ContactList
           contacts={contacts}
           onChange={this.handleChange}

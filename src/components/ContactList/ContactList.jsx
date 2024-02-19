@@ -12,7 +12,8 @@ export default function ContactList({
   );
 
   return (
-    <>
+    <div>
+      <h2>Filter</h2>
       <input type="text" name="filter" value={filter} onChange={onChange} />
       <ul className={s.list}>
         {filteredContacts.map(contact => (
@@ -24,6 +25,6 @@ export default function ContactList({
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }
